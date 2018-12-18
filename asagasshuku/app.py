@@ -14,19 +14,19 @@ def create_app():
 
   app.register_blueprint(events.app, url_prefix="/events")
 
-  @app.route('/todos')
-  def index():
-    todos = Todo.query.all()
-    jsonTodos = map(lambda todo: TodoSchema().dump(todo).data, todos)
-    return make_response(jsonify(list(jsonTodos)))
+  # @app.route('/todos')
+  # def index():
+  #   todos = Todo.query.all()
+  #   jsonTodos = map(lambda todo: TodoSchema().dump(todo).data, todos)
+  #   return make_response(jsonify(list(jsonTodos)))
 
-  @app.route('/todos', methods=["POST"])
-  def create():
-    todo = Todo(name=request.form["name"])
-    db.session.add(todo)
-    db.session.commit()
-    jsonTodo = TodoSchema().dump(todo).data
-    return make_response(jsonify(jsonTodo))
+  # @app.route('/todos', methods=["POST"])
+  # def create():
+  #   todo = Todo(name=request.form["name"])
+  #   db.session.add(todo)
+  #   db.session.commit()
+  #   jsonTodo = TodoSchema().dump(todo).data
+  #   return make_response(jsonify(jsonTodo))
 
   return app
 
